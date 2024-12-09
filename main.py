@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     N = int(input('Population Size = '))
@@ -15,30 +16,29 @@ if __name__ == '__main__':
     Ro = int(input('Ro = '))
     fiR = float(input('μR = '))
 
-    def calcSus():
+    def calcGraph():
         if S == So and So >= 0:
             ds = fiN - fiS - betaIS / N
             ds = ds / t
             print('Susceptibles per unit time = ', ds)
         else:
             print('S and So did not meet the criteria')
-
-    def calcInf():
         if In == Io and Io >= 0:
-            di = betaIS/N - epsI - fiI
-            di = di/t
+            di = betaIS / N - epsI - fiI
+            di = di / t
             print('Infectives per unit time = ', di)
         else:
             print('I and Io did not meet the criteria')
-
-    def calcRem():
         if R == Ro and Ro >= 0:
             dr = epsI - fiR
-            dr = dr/t
+            dr = dr / t
             print('Removed per unit time = ', dr)
         else:
             print("R and Ro did not meet the criteria")
 
-    calcSus()
-    calcInf()
-    calcRem()
+        # plotting different subplots
+        fig, axs = plt.subplots()
+        axs.plot(ds, di, linewidth=2)
+        plt.show()
+
+    calcGraph()
